@@ -12,8 +12,10 @@ https.get(url, function(response) {
 
     response.on("data", function(data){
         const weatherData = JSON.parse(data)
-        const temp = weatherData.main.temp
-        console.log(temp);
+        const temp = weatherData.main.feels_like
+        const weatherDescription = weatherData.weather[0].description    //0 because is a array
+        console.log(weatherDescription);
+
 
     })
 })
