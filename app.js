@@ -8,7 +8,14 @@ app.get("/", function(req, res) {
 const url = "https://api.openweathermap.org/data/2.5/weather?q=Brno&appid=4c3ecc1a8f3294ae04e769ca473aa51b&units=metric";
 
 https.get(url, function(response) {
-  console.log(response.statusCode);         //stateCode tell us if sucess or not positive 200 or 400 for erros
+  console.log(response.statusCode);         //stateCode tell us if sucess or not positive 200 or 404 for errors
+
+    response.on("data", function(data){
+        const weatherData = JSON.parse(data)
+        const temp = weatherData.main.temp
+        console.log(temp);
+
+    })
 })
 
   res.send("server is up and running.")
